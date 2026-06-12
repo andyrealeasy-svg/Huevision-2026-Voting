@@ -24,10 +24,14 @@ let submitted = false;
 const maxVotes = 40;
 
 function init() {
-  const saved = localStorage.getItem('huevision_voted');
-  if (saved) {
-    submitted = true;
-    votes = JSON.parse(saved);
+  try {
+    const saved = localStorage.getItem('huevision_voted');
+    if (saved) {
+      submitted = true;
+      votes = JSON.parse(saved);
+    }
+  } catch (e) {
+    console.error('Не удалось получить доступ к localStorage', e);
   }
   render();
 }
@@ -80,7 +84,11 @@ window.handleConfirmSubmit = function() {
     body: JSON.stringify(payload)
   })
   .then(() => {
-    localStorage.setItem('huevision_voted', JSON.stringify(votes));
+    try {
+      localStorage.setItem('huevision_voted', JSON.stringify(votes));
+    } catch (e) {
+      console.error('Ошибка сохранения в localStorage', e);
+    }
     submitted = true;
     render(false, true);
   })
