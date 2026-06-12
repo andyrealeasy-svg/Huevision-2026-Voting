@@ -1,0 +1,6 @@
+{
+  "name": "Huevision 2026",
+  "description": "Mobile voting app for Huevision 2026 contest",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
